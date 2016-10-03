@@ -1,0 +1,63 @@
+From: /Users/Fitchburgh/Documents/TIY/homework/week4/relational_hw/run.rb @ line 7 Object#main:
+
+    6: def main
+ => 7:   binding.pry
+    8:   p ArmorSet.where(id: 1).first.set_name
+    9: end
+
+[1] pry(main)> Character.all
+=> [#<Character:0x007f9499461498
+  id: 1,
+  name: "Bhakti",
+  character_class: "Hunter",
+  race: "Human",
+  armor_set: "Death Toll",
+  weapon: "Hammer",
+  created_at: 2016-10-03 19:53:59 UTC,
+  updated_at: 2016-10-03 19:53:59 UTC>]
+[2] pry(main)> Character.first
+=> #<Character:0x007f949906e570
+ id: 1,
+ name: "Bhakti",
+ character_class: "Hunter",
+ race: "Human",
+ armor_set: "Death Toll",
+ weapon: "Hammer",
+ created_at: 2016-10-03 19:53:59 UTC,
+ updated_at: 2016-10-03 19:53:59 UTC>
+[3] pry(main)> Character.first.armor_set
+=> "Death Toll"
+[4] pry(main)> ArmorSet.where(set_name: Character.first.armor_set)
+=> [#<ArmorSet:0x007f949965b7f8
+  id: 1,
+  set_name: "Death Toll",
+  created_at: 2016-10-03 19:53:59 UTC,
+  updated_at: 2016-10-03 19:53:59 UTC>]
+[5] pry(main)> Character.all
+=> [#<Character:0x007f94996f8940
+  id: 1,
+  name: "Bhakti",
+  character_class: "Hunter",
+  race: "Human",
+  armor_set: "Death Toll",
+  weapon: "Hammer",
+  created_at: 2016-10-03 19:53:59 UTC,
+  updated_at: 2016-10-03 19:53:59 UTC>]
+[6] pry(main)> Character.where(name: "Bhakti")
+=> [#<Character:0x007f94997806d8
+  id: 1,
+  name: "Bhakti",
+  character_class: "Hunter",
+  race: "Human",
+  armor_set: "Death Toll",
+  weapon: "Hammer",
+  created_at: 2016-10-03 19:53:59 UTC,
+  updated_at: 2016-10-03 19:53:59 UTC>]
+[7] pry(main)> Character.where(name: "Bhakti").first.character_class
+=> "Hunter"
+[8] pry(main)> Character.find(name: "Bhakti").character_class
+ActiveRecord::RecordNotFound: Couldn't find Character with 'id'={:name=>"Bhakti"}
+from /Users/Fitchburgh/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/activerecord-5.0.0.1/lib/active_record/core.rb:173:in `find'
+[9] pry(main)> Character.find_by(name: "Bhakti").character_class
+=> "Hunter"
+[10] pry(main)>

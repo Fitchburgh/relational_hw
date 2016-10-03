@@ -8,10 +8,9 @@ class CreateCharactersTable < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :character_class
       t.string :race
-      t.string :armor_set
+      t.string :set_name
       t.string :weapon
-      t.datetime :created_at, null: false
-      t.datetime :updated_at, null: false
+      t.timestamps
     end
 
     puts 'Character table initialized'
@@ -23,26 +22,37 @@ class CreateCharactersTable < ActiveRecord::Migration[5.0]
     puts 'Character table deleted'
   end
 end
+
 #
 class CreateArmorSetTable < ActiveRecord::Migration[5.0]
   def up
-    puts 'Initializing armory...'
-    create_table :armory do |t|
+    puts 'Setting up armor set table'
+    create_table :armor_sets do |t|
       t.string :set_name
+      t.timestamps
+    end
+  end
+end
+
+#
+class CreateArmorPiecesTable < ActiveRecord::Migration[5.0]
+  def up
+    puts 'Initializing armor pieces...'
+    create_table :armor_pieces do |t|
       t.string :head
       t.string :body
       t.string :hands
       t.string :feet
       t.string :legs
-      t.datetime :created_at, null: false
-      t.datetime :updated_at, null: false
+      t.string :set_name
+      t.timestamps
     end
-    puts 'Armory ready'
+    puts 'Armor ready'
   end
 
   def down
     puts 'Scrapping armory...'
-    drop_table :armory
+    drop_table :armor_pieces
     puts 'Armory scrapped.'
   end
 end
@@ -53,6 +63,9 @@ def main
 
   up_or_down = (ARGV[1] || :up).to_sym
   CreateArmorSetTable.migrate(up_or_down)
+
+  up_or_down = (ARGV[2] || :up).to_sym
+  CreateArmorPiecesTable.migrate(up_or_down)
 end
 
 main if __FILE__ == $PROGRAM_NAME
