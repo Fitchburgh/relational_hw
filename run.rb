@@ -16,12 +16,9 @@ require 'pry'
 #   stat_to_update = gets.chomp.downcase
 # end
 
-
-
 def main
-  ArmorSet.joins(:head, :body, :hands, :legs, :feet, :set_name)
+  ArmorSet.joins(:set_name)
   p ArmorSet.all
-
 
   char_to_update = gets.chomp.capitalize
   binding.pry
