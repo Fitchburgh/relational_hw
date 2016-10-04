@@ -21,7 +21,6 @@ def main
   p ArmorSet.all
 
   char_to_update = gets.chomp.capitalize
-  binding.pry
   # p Character.all
   # p Character.first.armor_set
   # p ArmorSet.where(set_name: Character.first.armor_set)
